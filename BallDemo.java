@@ -39,16 +39,14 @@ public class BallDemo
 
         BouncingBall bola = null;
         
-        int posX = 40;
-        int posY = 40;
-        int radio = 15;
         for (int i=0;i<numeroBolas;i++){
-            listaBolas.add(new BouncingBall(posX, posY, radio, Color.BLUE, ground, myCanvas));
+            int r = rnd.nextInt(256);
+            int g = rnd.nextInt(256);
+            int b = rnd.nextInt(256);
+            Color rndColor = new Color(r,g,b);
+            listaBolas.add(new BouncingBall(rnd.nextInt(50), rnd.nextInt(50), rnd.nextInt(100), rndColor, ground, myCanvas));
             bola = listaBolas.get(i);
             bola.draw();
-            posX+=10;
-            posY+=10;
-            radio+=5;
         }
 
         // make them bounce
@@ -57,7 +55,7 @@ public class BallDemo
             myCanvas.wait(50);
             for (int indice = 0;indice<listaBolas.size();indice++){
                 listaBolas.get(indice).move();
-                if(bola.getXPosition() >= 550) {
+                if(listaBolas.get(indice).getXPosition() >= 550) {
                     finished = true;
                 }
             }
