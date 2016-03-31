@@ -22,11 +22,16 @@ public class BoxBall
     private int ySpeed = 1;                // initial downward speed
     private boolean direccionDcha;
     private boolean direccionAbajo;
+    private int x1;
+    private int x2;
+    private int y1;
+    private int y2;
 
     /**
      * Constructor for objects of class BoxBall
      */
-    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor, int groundPos, Canvas drawingCanvas, boolean dirVertical, boolean dirHorizontal)
+    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor, int groundPos, Canvas drawingCanvas, boolean dirVertical, boolean dirHorizontal,
+                    int x1, int y1, int x2, int y2)
     {
         xPosition = xPos;
         yPosition = yPos;
@@ -36,6 +41,10 @@ public class BoxBall
         canvas = drawingCanvas;
         direccionDcha = dirHorizontal;
         direccionAbajo = dirVertical;
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
     }
 
     /**
@@ -78,11 +87,11 @@ public class BoxBall
             xPosition--;
         }
 
-        if (yPosition >= (400-diameter) || yPosition <= 100){
+        if (yPosition >= (y1-diameter) || yPosition <= y2){
             direccionAbajo = !direccionAbajo;
         }
         
-        if (xPosition <= 51 || xPosition >= (550-diameter)){
+        if (xPosition <= x1 || xPosition >= (x2-diameter)){
             direccionDcha = !direccionDcha;
         }
 

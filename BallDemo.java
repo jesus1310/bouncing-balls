@@ -70,27 +70,30 @@ public class BallDemo
      */
     public void boxBounce(int numBolas)
     {
-        int ground = 400;   // position of the ground line
+        int x1=50;
+        int y1=400;
+        int x2=550;
+        int y2=300;
         myCanvas.setVisible(true);
 
-        myCanvas.drawLine(50,ground,550,ground);
-        myCanvas.drawLine(50,ground,50,100);
-        myCanvas.drawLine(550,ground,550,100);
-        myCanvas.drawLine(50,100,550,100);
+        myCanvas.drawLine(x1,y1,x2,y1);
+        myCanvas.drawLine(x1,y1,x1,y2);
+        myCanvas.drawLine(x2,y1,x2,y2);
+        myCanvas.drawLine(x1,y2,x2,y2);
         
         for (int i=0;i<numBolas;i++){
             int r = rnd.nextInt(256);
             int g = rnd.nextInt(256);
             int b = rnd.nextInt(256);
             Color rndColor = new Color(r,g,b);
-            listaBoxBall.add(new BoxBall(rnd.nextInt(150)+60, rnd.nextInt(200)+110, rnd.nextInt(50), rndColor, ground, myCanvas,
-                                            rnd.nextBoolean(), rnd.nextBoolean()));
+            listaBoxBall.add(new BoxBall(x1+1, y2+1, rnd.nextInt(50), rndColor, y1, myCanvas,
+                                            rnd.nextBoolean(), rnd.nextBoolean(),x1,y1,x2,y2));
             listaBoxBall.get(i).draw();
         }
         
         boolean finished =  false;
         while(!finished) {
-            myCanvas.wait(10);
+            myCanvas.wait(5);
             for (int indice = 0;indice<listaBoxBall.size();indice++){
                 listaBoxBall.get(indice).move();
                 if(listaBoxBall.get(indice).getXPosition() >= 550) {
