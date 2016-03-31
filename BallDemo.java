@@ -83,14 +83,14 @@ public class BallDemo
             int g = rnd.nextInt(256);
             int b = rnd.nextInt(256);
             Color rndColor = new Color(r,g,b);
-            listaBoxBall.add(new BoxBall(rnd.nextInt(100)+60, rnd.nextInt(150)+110, rnd.nextInt(50), rndColor, ground, myCanvas,
+            listaBoxBall.add(new BoxBall(rnd.nextInt(150)+60, rnd.nextInt(200)+110, rnd.nextInt(50), rndColor, ground, myCanvas,
                                             rnd.nextBoolean(), rnd.nextBoolean()));
             listaBoxBall.get(i).draw();
         }
         
         boolean finished =  false;
         while(!finished) {
-            myCanvas.wait(20);
+            myCanvas.wait(10);
             for (int indice = 0;indice<listaBoxBall.size();indice++){
                 listaBoxBall.get(indice).move();
                 if(listaBoxBall.get(indice).getXPosition() >= 550) {
