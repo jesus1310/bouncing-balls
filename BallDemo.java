@@ -38,7 +38,7 @@ public class BallDemo
         myCanvas.drawLine(50, ground, 550, ground);
 
         BouncingBall bola = null;
-        
+
         for (int i=0;i<numeroBolas;i++){
             int r = rnd.nextInt(256);
             int g = rnd.nextInt(256);
@@ -60,5 +60,20 @@ public class BallDemo
                 }
             }
         }
+    }
+
+    /**
+     * Método para que las bolas se muevan en diagonal y reboten al llegar a las paredes de un rectangulo dibujado
+     */
+    public void boxBounce(int numBolas)
+    {
+        int ground = 400;   // position of the ground line
+        myCanvas.setVisible(true);
+
+        myCanvas.drawLine(50,ground,550,ground);
+        myCanvas.drawLine(50,ground,50,100);
+        myCanvas.drawLine(550,ground,550,100);
+        myCanvas.drawLine(50,100,550,100);
+        
     }
 }
