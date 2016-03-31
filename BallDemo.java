@@ -44,7 +44,7 @@ public class BallDemo
             int g = rnd.nextInt(256);
             int b = rnd.nextInt(256);
             Color rndColor = new Color(r,g,b);
-            listaBolas.add(new BouncingBall(rnd.nextInt(50), rnd.nextInt(50), rnd.nextInt(100), rndColor, ground, myCanvas));
+            listaBolas.add(new BouncingBall(rnd.nextInt(150), rnd.nextInt(150), rnd.nextInt(100), rndColor, ground, myCanvas));
             bola = listaBolas.get(i);
             bola.draw();
         }
@@ -52,7 +52,7 @@ public class BallDemo
         // make them bounce
         boolean finished =  false;
         while(!finished) {
-            myCanvas.wait(50);
+            myCanvas.wait(20);
             for (int indice = 0;indice<listaBolas.size();indice++){
                 listaBolas.get(indice).move();
                 if(listaBolas.get(indice).getXPosition() >= 550) {
