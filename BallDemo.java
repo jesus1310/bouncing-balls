@@ -15,6 +15,8 @@ public class BallDemo
     private Canvas myCanvas;
     private Random rnd;
     private ArrayList<BouncingBall> listaBolas;
+    private ArrayList<BoxBall> listaBoxBall;
+    
     /**
      * Create a BallDemo object. Creates a fresh canvas and makes it visible.
      */
@@ -23,6 +25,7 @@ public class BallDemo
         myCanvas = new Canvas("Ball Demo", 600, 500);
         rnd = new Random();
         listaBolas = new ArrayList<>();
+        listaBoxBall = new ArrayList<>();
     }
 
     /**
@@ -75,5 +78,25 @@ public class BallDemo
         myCanvas.drawLine(550,ground,550,100);
         myCanvas.drawLine(50,100,550,100);
         
+        for (int i=0;i<numBolas;i++){
+            int r = rnd.nextInt(256);
+            int g = rnd.nextInt(256);
+            int b = rnd.nextInt(256);
+            Color rndColor = new Color(r,g,b);
+            listaBoxBall.add(new BoxBall(rnd.nextInt(100)+60, rnd.nextInt(150)+110, rnd.nextInt(50), rndColor, ground, myCanvas,
+                                            rnd.nextBoolean(), rnd.nextBoolean()));
+            listaBoxBall.get(i).draw();
+        }
+        
+        boolean finished =  false;
+        while(!finished) {
+            myCanvas.wait(20);
+            for (int indice = 0;indice<listaBoxBall.size();indice++){
+                listaBoxBall.get(indice).move();
+                if(listaBoxBall.get(indice).getXPosition() >= 550) {
+                    finished = false;
+                }
+            }
+        }
     }
 }

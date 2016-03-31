@@ -26,7 +26,7 @@ public class BoxBall
     /**
      * Constructor for objects of class BoxBall
      */
-    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor, int groundPos, Canvas drawingCanvas, boolean direccion)
+    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor, int groundPos, Canvas drawingCanvas, boolean dirVertical, boolean dirHorizontal)
     {
         xPosition = xPos;
         yPosition = yPos;
@@ -34,8 +34,8 @@ public class BoxBall
         diameter = ballDiameter;
         groundPosition = groundPos;
         canvas = drawingCanvas;
-        direccionDcha = direccion;
-        direccionAbajo = true;
+        direccionDcha = dirHorizontal;
+        direccionAbajo = dirVertical;
     }
 
     /**
@@ -64,18 +64,26 @@ public class BoxBall
         erase();
 
         // compute new position
-        if(direccionAbajo){
-            yPosition += ySpeed;
+        if (direccionAbajo) {
+            yPosition++;
         }
         else {
-            yPosition -= ySpeed;
+            yPosition--;
         }
-        
-        if(direccionDcha) {
+
+        if (direccionDcha) {
             xPosition++;
         }
         else {
             xPosition--;
+        }
+
+        if (yPosition >= (400-diameter) || yPosition <= 100){
+            direccionAbajo = !direccionAbajo;
+        }
+        
+        if (xPosition <= 51 || xPosition >= (550-diameter)){
+            direccionDcha = !direccionDcha;
         }
 
         // draw again at new position
